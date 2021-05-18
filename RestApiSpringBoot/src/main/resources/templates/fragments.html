@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>Confapp</title>
+        <meta charset="UTF-8"></meta>
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </head>
+    <body>
+        <div th:fragment="header">
+            <h1 th:text="#{msg.conference}" ></h1>
+            <img th:src="@{/images/company-logo.png}" />
+            <div sec:authorize="isAuthenticated()">			
+                <form method="POST" th:action="@{/logout}">
+                        <span th:text="#{msg.userInfo}" ></span>  
+                        <span sec:authentication="name"></span>.
+                        <input type="submit" value="Logout" class="btn btn-danger" />
+                </form>
+            </div>
+            <div>
+                <span th:text="#{msg.lang.current}"></span>:
+                <select id="locales">
+                    <option value="hr" th:selected="${#locale.language == 'hr'}" th:text="#{msg.lang.hr}"></option>
+                    <option value="en" th:selected="${#locale.language == 'en'}" th:text="#{msg.lang.en}"></option>
+                </select>
+            </div>
+        </div>
+    </body>
+</html>

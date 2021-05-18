@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head" ></head>
+    <body>
+        <div class="container-fluid">
+            <div th:replace="fragments :: header" ></div>
+            <h3 th:text="#{msg.lectureCongrat}" ></h3>
+
+            <div sec:authorize="hasRole('ROLE_ADMIN')" >
+                <div th:unless="${lecture.publish}" >
+                        <h5 th:text="#{msg.publishInfoNegative}" ></h5>
+                </div>
+                <div th:if="${lecture.publish}" >
+                        <h5 th:text="#{msg.publishInfo}" ></h5>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <span th:text="#{msg.speaker.name}" ></span>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <span th:text="${lecture.speaker.name}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <span th:text="#{msg.speaker.position}" ></span>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <span th:text="${lecture.speaker.position}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <span th:text="#{msg.lecture.title}" ></span>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <span th:text="${lecture.title}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <span th:text="#{msg.lecture.contents}" ></span>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <span th:text="${lecture.contents}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <span th:text="#{msg.lecture.type}" ></span>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <span th:text="${lecture.type}" ></span>
+                    </div>
+                </div>
+            </div>
+
+            <a th:href="@{/lectures/new}" class="btn btn-primary" th:text="#{msg.back}"  ></a>
+        </div>
+    </body>
+</html>

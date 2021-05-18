@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="fragments :: head" ></head>
+    <body>
+        <div class="container-fluid">
+            <div th:replace="fragments :: header" ></div>
+            <h1 th:text="#{msg.registration}" ></h1>
+            <form method="POST" th:action="@{/register}">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="username" th:text="#{msg.username}+':'" ></label> 
+                        <input type="text" name="username" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="password" th:text="#{msg.password}+':'" ></label>
+                        <input type="password" name="password" class="form-control"/>					
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                        <input type="submit" th:value="#{msg.registrateButton}" class="form-control btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+            <a th:href="@{/login}" class="btn btn-primary" >Login</a>
+        </div>
+    </body>
+</html>

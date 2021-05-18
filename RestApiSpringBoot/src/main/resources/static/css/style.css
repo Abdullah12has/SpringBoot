@@ -1,0 +1,8 @@
+
+.validation-error, .login-error {
+    color: darkred;	
+}
+
+.logout-success {
+    color: green
+}
